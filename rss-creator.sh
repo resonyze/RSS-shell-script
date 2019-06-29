@@ -49,7 +49,22 @@ do
   do
     for newFile in `get-newest-files "$subDir"`;
     do
-      content-into-rss-xml $newFile $rssFile
+      if [[ $REPLY != 'a' ]];
+      then
+        unset REPLY;
+        echo "Add $newFile to rss.xml? (y/n/a)"
+        read REPLY
+      fi
+      if [[ $REPLY = 'y' ]] || [[ $REPLY = 'a' ]];
+      then
+        echo "Adding $newFile to rss.xml"
+        content-into-rss-xml $newFile $rssFile
+      else
+        rm $newFile && echo "Removed $newFile"
+        echo "Remember to add %nohtml flag in the wiki file"
+        FILELOC="${newFile%/*}"
+        cat "$FILELOC/.files-before" | grep -v "$newFile" > $FILELOC/.files-before
+      fi
       #echo $newFile from "$subDir"
     done
   done
