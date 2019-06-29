@@ -38,7 +38,8 @@ get-sub-dirs ()
    find "$1" -type d | grep -v '/img' | grep -v '/res'
 }
 
-desDirs="$HOME/website/html/opinion\n$HOME/website/html/blog\n$HOME/website/html/web-notes"
+#desDirs="$HOME/website/html/opinion\n$HOME/website/html/blog\n$HOME/website/html/web-notes"
+desDirs="$HOME/website/html/blog\n$HOME/website/html/web-notes"
 
 rssFile="$HOME/website/html/rss.xml"
 
