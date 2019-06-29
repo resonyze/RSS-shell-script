@@ -28,7 +28,7 @@ content-into-rss-xml ()
 
   set +H
 
-  printf "\\n<item>\\n<title>%s</title>\\n<guid>%s</guid>\\n<pubDate>%s</pubDate>\\n<description><![CDATA[\\n%s\\n]]></description>\\n</item>\\n\\n" "$title" "$guid" "$date" "$body" > /tmp/article-body
+  printf "\\n<item>\\n<title>%s</title>\\n<guid>%s</guid>\\n<link>%s</link>\\n<pubDate>%s</pubDate>\\n<description><![CDATA[\\n%s\\n]]></description>\\n</item>\\n\\n" "$title" "$guid"   "$guid" "$date" "$body" > /tmp/article-body
 
   sed -i '/<!-- LB -->/r /tmp/article-body' "$rssFile"
 }
