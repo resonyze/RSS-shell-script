@@ -1,16 +1,16 @@
-#!/bin/bash
+#!/run/current-system/sw/bin/bash
 
 get-newest-files ()
 {
   dirpa="$1"
   if [[ -f "$dirpa/.files-before" ]];
   then
-    diff <(find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html) "$dirpa/.files-before" | grep '^< ' | sed 's/< //'
+    diff <(find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html ! -name style.css) "$dirpa/.files-before" | grep '^< ' | sed 's/< //'
   else
-    find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html
+    find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html ! -name style.css
   fi
 
-  find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html > "$dirpa/.files-before"
+  find "$dirpa" -maxdepth 1 -not -type d -not -path '*/\.*' ! -name index.html ! -name style.css > "$dirpa/.files-before"
 }
 
 content-into-rss-xml ()
